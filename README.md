@@ -2,7 +2,7 @@
 
 ## 为什么需要这个项目？
 
-想象一下，你正在为一家博物馆建立数字化档案系统。你需要记录：每件艺术品是谁创作的、何时何地完成、经历过哪些收藏者的流转、参加过哪些展览...如果把这些信息分散在不同的表格和数据库中，不仅难以维护，更无法与其他机构共享数据。
+想象一下，你正在为GLAM建立数字化档案系统。你需要记录：每件艺术品是谁创作的、何时何地完成、经历过哪些收藏者的流转、参加过哪些展览...如果把这些信息分散在不同的表格和数据库中，不仅难以维护，更无法与其他机构共享数据。
 
 这就是 Linked Art 要解决的问题——它提供了一套**标准的数据模型**，让文化遗产信息的记录和共享变得简单。就像图书馆使用 ISBN 标准来标识书籍一样，Linked Art 让博物馆、美术馆、档案馆可以用同一种"语言"来描述他们的收藏。
 
@@ -44,7 +44,7 @@ pip install cromulent jupyter
 ```bash
 jupyter lab notebooks
 ```
-然后在浏览器中打开 `00-导航索引.ipynb`
+然后在浏览器中打开 `00-README.ipynb`
 
 **英文版**：
 ```bash
@@ -84,12 +84,12 @@ print(model.factory.toString(artwork, compact=False))
 
 ```
 linked-art-docs-zh/
-├── docs/              # 原始英文文档（保留）
+├── docs/              # 原始英文文档
 ├── docs-zh/           # 中文翻译
 ├── notebooks/         # 中文版 Notebook
 ├── notebooks-en/      # 英文版 Notebook
 ├── scripts/           # 转换工具
-└── 术语对照表.md      # 专业术语标准
+└── 术语对照表.md       # 专业术语标准
 ```
 
 ## 核心概念速览
@@ -117,7 +117,7 @@ linked-art-docs-zh/
 
 ### 初学者（推荐）
 
-1. **从入门开始**：`notebooks/00-导航索引.ipynb`
+1. **从入门开始**：`notebooks/00-README.ipynb`
 2. **理解核心概念**：`notebooks/model/index.ipynb`
 3. **实践创建对象**：`notebooks/model/object/production.ipynb`
 
@@ -218,6 +218,3 @@ python -c "from scripts.md_to_ipynb_converter import convert_directory; \
 
 感谢 Linked Art 社区，特别是 Rob Sanderson 和所有贡献者。
 
----
-
-*本文档遵循"为所有人服务"的原则编写。如果你有任何疑问或建议，欢迎通过 GitHub Issues 联系。*

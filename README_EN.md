@@ -2,7 +2,7 @@
 
 ## Why This Project Exists?
 
-Imagine you're building a digital archive system for a museum. You need to track: who created each artwork, when and where it was made, which collectors owned it, what exhibitions it appeared in... If this information is scattered across different spreadsheets and databases, it's hard to maintain and impossible to share with other institutions.
+Imagine you're building a digital archive system for a GLAM. You need to track: who created each artwork, when and where it was made, which collectors owned it, what exhibitions it appeared in... If this information is scattered across different spreadsheets and databases, it's hard to maintain and impossible to share with other institutions.
 
 This is the problem Linked Art solves—it provides a **standard data model** that makes recording and sharing cultural heritage information simple. Just as libraries use ISBN standards to identify books, Linked Art lets museums, galleries, and archives describe their collections using a common "language."
 
@@ -44,7 +44,7 @@ Choose your preference:
 ```bash
 jupyter lab notebooks
 ```
-Then open `00-导航索引.ipynb` in your browser
+Then open `00-README.ipynb` in your browser
 
 **English version**:
 ```bash
@@ -89,7 +89,7 @@ linked-art-docs-zh/
 ├── notebooks/         # Chinese Notebooks
 ├── notebooks-en/      # English Notebooks
 ├── scripts/           # Conversion utilities
-└── 术语对照表.md      # Chinese terminology standard
+└── 术语对照表.md        # Chinese terminology standard
 ```
 
 ## Core Concepts at a Glance
@@ -117,7 +117,7 @@ A data model defines how to describe a cultural heritage object. For example, de
 
 ### Beginners (Recommended)
 
-1. **Get Started**: `notebooks-en/00-导航索引.ipynb`
+1. **Get Started**: `notebooks-en/00-README.ipynb`
 2. **Understand Core Concepts**: `notebooks-en/model/index.ipynb`
 3. **Practice Creating Objects**: `notebooks-en/model/object/production.ipynb`
 
@@ -218,6 +218,3 @@ If you want to improve the conversion script:
 
 Thanks to the Linked Art community, especially Rob Sanderson and all contributors.
 
----
-
-*This documentation follows the principle of "serving everyone". If you have any questions or suggestions, please reach out via GitHub Issues.*
