@@ -123,17 +123,9 @@ def markdown_to_cells(content: str, add_json_output: bool = True) -> List[Tuple[
     # 在开头添加环境设置单元格
     setup_code = """# 环境设置
 from cromulent import model, vocab
-import json
 
 # 设置 base_url 以获得更清晰的输出
 model.factory.base_url = 'http://test.com/museum/'
-
-def print_json(obj):
-    \"\"\"打印 JSON 格式的 Linked Art 数据\"\"\"
-    if hasattr(obj, 'to_json'):
-        print(json.dumps(obj.to_json(), indent=2, ensure_ascii=False))
-    else:
-        print(json.dumps(obj, indent=2, ensure_ascii=False))
 """
     cells.append(('code', setup_code))
 
