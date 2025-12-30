@@ -22,3 +22,31 @@ up_label: "模型概述"
 ## 用法
 
 对词汇表条目的引用可以直接在引用的 `id` 中，也可以作为对中介的嵌入式 `equivalent`。为了符合性和实用性，以下两者都是同样可接受的。
+
+在 `id` 中的词汇表：
+
+```crom
+top = model.HumanMadeObject(ident="spring/30", label="马奈的让娜（春天）")
+top.classified_as = model.Type(ident="http://vocab.getty.edu/aat/300033618",label="绘画")
+```
+
+在 `equivalent` 中的词汇表：
+
+```crom
+top = model.HumanMadeObject(ident="spring/31", label="马奈的让娜（春天）")
+typ = model.Type(ident="https://linked.art/vocab/terms/painting", label="绘画")
+eq = model.Type(ident="http://vocab.getty.edu/aat/300033618",label="绘画")
+typ.equivalent = eq
+top.classified_as = typ
+```
+
+## 词汇表列表的更新
+
+必需列表中的条目只会在 Linked Art 的新主要版本中更改或删除，但可能会在次要版本中添加新要求。虽然这是对语义版本控制要求的弱解释，但它旨在促进语义层面的互操作性，因为最佳实践和一致性在社区内出现，而无需等待主要版本。
+
+推荐列表也可以在新的次要版本中更新，因为不遵循列表不会破坏与以前次要版本的兼容性。这包括添加、删除和更改列表中条目的 URI。
+
+可选列表仅作为信息，没有语义版本控制，因此可以随时更新。
+
+社区应该通过 [github](https://github.com/linked-art/linked.art/issues) 问题提出对列表的添加。
+

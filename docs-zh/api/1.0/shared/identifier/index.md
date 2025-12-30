@@ -7,6 +7,7 @@ up_label: "Linked Art API 1.0 共享数据结构"
 
 
 
+
 ## 简介
 
 标识符是分配给某个资源以在特定上下文中标识它的字符串形式的代码。所有不同类型的实体都可以分配标识符。标识符在结构上与[名称](../name/)非常相似，但明确不是自然语言的一部分，因此没有 `language` 属性，也不能被翻译或有替代形式，因此单独记录。
@@ -42,4 +43,36 @@ up_label: "Linked Art API 1.0 共享数据结构"
 
 | 属性名称   | 源端点   | 描述 |
 |-----------------|-------------------|-------------|
-| `identified_by` | 所有端点     | 实体的标识符列表 |
+| `identified_by` | 所有端点     | 最常见的情况是资源由标识符标识，可以在每个端点中找到 |
+| `contact_point` | [人物](../../endpoint/person/)、[团体](../../endpoint/group/) | 人物和团体也可以有联系点，建模为标识符。 |
+
+## 示例
+
+对象的入藏号，在1997年的某个时间由示例博物馆创建和分配。
+
+* 它在 `id` 中给出了一个 URI（标识标识符，而不是对象）
+* 它的 `type` 是 "Identifier"
+* 它有一个易读的 `_label` "示例博物馆入藏号" 来解释它是什么
+* 它 `classified_as` 为入藏号，`id` 为 _aat:300312355_，`type` 为 Type
+* 它 `referred_to_by` 一个陈述，`type` 为 "LinguisticObject"，`content` 为 "这是原始..."。LinguisticObject `classified_as` 为笔记，`id` 为 _aat:300418049_，`type` 为 Type
+* 它的 `content` 值为 "1997-A1752"
+* 它 `assigned_by` 一个标识符分配，该分配...
+    * ...在 `id` 中给出了一个 URI（标识分配）
+    * ...的 `type` 为 "AttributeAssignment"
+    * ...有一个 `timespan` 结构，`begin_of_the_begin` 日期为 1997 年 1 月 1 日，`end_of_the_end` 日期为 1997 年 12 月 31 日
+    * ... `carried_out_by` 创建标识符的组织的 [引用](../reference/)，`type` 为 "Group"
+
+```crom
+top = model.HumanMadeObject(ident="auto int-per-segment")
+id = vocab.AccessionNumber(label="示例博物馆入藏号", content="1997-A1752")
+top.identified_by = id
+id.identified_by = vocab.PrimaryName(content="入藏号")
+id.referred_to_by = vocab.Note(content="这是 1997 年的原始入藏号")
+aa = model.AttributeAssignment(label="分配 1997-A1752")
+id.assigned_by = aa
+aa.carried_out_by = model.Group(label="示例博物馆")
+ts = model.TimeSpan(label="1997")
+aa.timespan = ts
+ts.begin_of_the_begin = "1997-01-01T00:00:00Z"
+ts.end_of_the_end = "1997-12-31T00:00:00Z"
+```

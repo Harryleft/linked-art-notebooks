@@ -28,3 +28,44 @@ Link: <https://example.com/data/object/1>;
 在 HTML 的 `head` 元素中：
 
 ```XML
+<head>
+  <link rel="describedby" href="https://example.com/data/object/1"
+        type="application/ld+json;profile='https://linked.art/ns/v1/linked-art.json'"/>
+</head>
+```
+
+`head` 中的 `link` 元素必须存在，如果可能，HTTP 头也应该存在。页面必须只有一个指向 linked art 记录的链接，以避免混淆应该使用哪个链接。
+
+请注意，这遵循[FAIR 标志配置文件](https://signposting.org/FAIR/)，因此任何遵循上述内容的 Linked Art 实现也将符合该规范。
+
+
+## 收获
+
+为了产生跨集合和跨机构的聚合服务或应用程序，必须能够以高效的方式找到所有记录，并与这些记录的任何更改保持同步。这是[IIIF 更改发现 API](https://iiif.io/api/discovery/)的目的。
+
+为了使 Linked Art 记录类型可用，可以使用一个简短的上下文文档（[https://linked.art/ns/v1/record-types.json](https://linked.art/ns/v1/record-types.json)）作为扩展，如 IIIF API 的链接数据上下文和[扩展](https://iiif.io/api/discovery/1.0/#342-extensions)节中所述。
+
+因此，响应中的上下文将是：
+
+```json
+{
+  "@context": [
+    "https://linked.art/ns/v1/record-types.json",
+    "http://iiif.io/api/discovery/1/context.json"
+  ]
+}
+```
+
+这将允许以下更改条目出现在流中，而不是仅限于 IIIF 的 `type` 值。
+
+```json
+{
+  "type": "Update",
+  "object": {
+    "id": "https://example.org/api/object/1",
+    "type": "HumanMadeObject"
+  }
+}
+```
+
+否则，功能和语法完全按照 IIIF 规范的描述。

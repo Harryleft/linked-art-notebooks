@@ -27,3 +27,57 @@ __示例：__
 Alfred Stieglitz 和 Bertha Obermeyer 之间的一封信，日期为 1920 年，是"Stieglitz 家族信件"子系列的一部分，该子系列是"系列 I：Alfred Stieglitz 通信"的一部分（该系列是耶鲁大学"Alfred Stieglitz / Georgia O'Keeffe 档案"的一部分）
 
 这封信……
+
+```crom
+top = model.HumanMadeObject(ident="letter/1", label="Obermeyer 1920")
+top.classified_as = model.Type(ident="http://vocab.getty.edu/aat/300026879", label="Letter")
+top.identified_by = vocab.PrimaryName(content="Obermeyer, Bertha (1920)")
+top.member_of = model.Set(ident="archive_sfl", label="Stieglitz Family Letters")
+```
+
+是子系列的成员……
+
+```crom
+top = vocab.ArchiveSubGroupSet(ident="archive_sfl/1", label="Stieglitz Family Letters")
+top.identified_by = vocab.PrimaryName(content="Stieglitz Family Letters")
+top.member_of = model.Set(ident="archive_asc", label="Alfred Stiegliz Correspondence")
+```
+
+该子系列是系列的成员……
+
+```crom
+top = vocab.ArchiveGroupSet(ident="archive_asc/1", label="Alfred Stiegliz Correspondence")
+top.identified_by = vocab.PrimaryName(content="Alfred Stiegliz Correspondence")
+```
+
+（依此类推）
+
+### 概念层次结构和物理层次结构之间的一致
+
+在档案层次结构的一个或多个点中，在概念安排和对象的物理存储之间进行一致性对齐是有用的。这是通过档案 Set 实体上的 `members_contained_by` 属性完成的，引用物理上包含或保存对象的 `HumanMadeObject`，如盒子、文件夹或架子。如果单独描述，物理对象也可以使用 `held_or_supported_by` 属性成为此物理层次结构的一部分。
+
+
+__示例：__
+
+Stieglitz 家族信件集合的成员位于第 55 号盒中。
+
+```crom
+top = vocab.ArchiveSubGroupSet(ident="archive_sfl/2", label="Stieglitz Family Letters")
+top.identified_by = vocab.PrimaryName(content="Stieglitz Family Letters")
+top.members_contained_by = model.HumanMadeObject(ident="box55", label="Archival Box 55")
+```
+
+这封信在盒子内。
+
+```crom
+top = model.HumanMadeObject(ident="letter/3", label="Obermeyer 1920")
+top.identified_by = vocab.PrimaryName(content="Obermeyer, Bertha (1920)")
+top.held_or_supported_by = model.HumanMadeObject(ident="box55", label="Archival Box 55")
+top.member_of = model.Set(ident="archive_sfl", label="Stieglitz Family Letters")
+```
+
+## 集体描述
+
+可以使用 Set 实例上的 `members_exemplified_by` 属性来描述集合成员的共同特征。这在[收藏](/model/collection/)页面中有更详细的描述。这对于建立档案收藏成员的创作日期范围、内容语言、类型等特别有用。
+
+否则，档案的大部分描述都是通过遵循[声明](/model/base/)模式的纯文本完成的。
